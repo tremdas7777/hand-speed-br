@@ -4,8 +4,8 @@
  */
 export const brand = {
   name: "HAND SPEED",
-  /** Endereço oficial da loja. PROVISÓRIO: troque pelo domínio próprio quando ele existir. */
-  siteUrl: "https://hand-speed-br.vercel.app",
+  /** Endereço oficial da loja (domínio da GoDaddy, apontado para a Vercel; o www redireciona para cá). */
+  siteUrl: "https://handspeed.store",
   /** Linha pequena embaixo do nome no logo. */
   logoTagline: "Desafio de reflexo",
   productName: "Hand Speed — Desafio do Bastão",

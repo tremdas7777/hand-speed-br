@@ -7,4 +7,4 @@ Disallow: /obrigado/
 Disallow: /upsell/
 Disallow: /expresso/
 
-Sitemap: https://hand-speed-br.vercel.app/sitemap.xml
+Sitemap: https://handspeed.store/sitemap.xml
