@@ -45,3 +45,4 @@ criativos/
 .env
 .env.*
 !.env.example
+.env*
