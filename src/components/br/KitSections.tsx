@@ -50,12 +50,12 @@ export function MesmaSala() {
         chegar no chão.
       </p>
       <img
-        src="/produtos/reflexo-limpa.webp"
-        alt="Menino tentando pegar o bastão que caiu da barra do Hand Speed na sala"
+        src="/fotos/pai-e-filho.webp"
+        alt="Pai e filho disputando com dois jogos Hand Speed pendurados lado a lado na sala"
         width={1200}
         height={1200}
         loading="lazy"
-        className={`mt-8 aspect-[4/3] w-full object-cover object-[50%_35%] md:aspect-[16/9] ${shadow}`}
+        className={`mt-8 aspect-[4/3] w-full object-cover object-[50%_30%] md:aspect-[16/9] ${shadow}`}
       />
       <ul className="mt-8 grid gap-6 md:grid-cols-3">
         {[

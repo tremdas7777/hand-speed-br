@@ -92,7 +92,7 @@ export function Gallery({ images, alt, chip }: { images: readonly string[]; alt:
           <span className="h-2 w-2 rounded-full bg-[#ffd21f]" />
           <span className="h-2 w-2 rounded-full bg-[#2f6ff0]" />
         </span>
-        Na foto: 1 jogo completo
+        Na primeira foto: 1 jogo completo
       </p>
     </div>
   );

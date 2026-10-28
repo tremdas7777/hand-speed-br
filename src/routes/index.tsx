@@ -28,15 +28,36 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const VANTAGENS = [
-  { n: "01", Icon: Smile, title: "Crianças", text: "Treinam o reflexo brincando, longe da tela." },
+/** Quem joga: fotos de cada idade (adultos inclusive) com uma frase curta. */
+const IDADES = [
   {
-    n: "02",
     Icon: Trophy,
-    title: "Adultos",
-    text: "Na velocidade máxima, quase ninguém pega os 6.",
+    title: "Pais contra filhos",
+    text: "Com 2 jogos lado a lado, é duelo na sala.",
+    img: "/fotos/pai-e-filho.webp",
+    alt: "Pai e filho disputando com dois jogos Hand Speed pendurados lado a lado na sala",
   },
-  { n: "03", Icon: Users, title: "Avós, tios e amigos", text: "Ninguém fica de fora da roda." },
+  {
+    Icon: Users,
+    title: "Amigos",
+    text: "Na velocidade máxima, quase ninguém pega os 6.",
+    img: "/fotos/amigos-noite.webp",
+    alt: "Amigos adultos rindo enquanto uma amiga pega o bastão à noite",
+  },
+  {
+    Icon: Smile,
+    title: "Avós e netos",
+    text: "Ninguém fica de fora da roda.",
+    img: "/fotos/avo-e-neta.webp",
+    alt: "Avó pegando o bastão enquanto a neta comemora pulando",
+  },
+  {
+    Icon: Flame,
+    title: "Churrasco e festas",
+    text: "A atração que todo mundo quer tentar.",
+    img: "/fotos/churrasco-amigos.webp",
+    alt: "Amigos no quintal com o Hand Speed pendurado perto da churrasqueira",
+  },
 ];
 
 function Hero({ from }: { from: number }) {
@@ -116,24 +137,26 @@ function MaisUma() {
           <br />E muita risada junto.
         </p>
       </div>
-      <ul className="mt-10 grid gap-3 md:grid-cols-3 md:gap-5">
-        {VANTAGENS.map(({ n, Icon, title, text }, i) => (
-          <li
-            key={n}
-            className={`card-soft relative flex items-center gap-5 overflow-hidden px-6 py-6 ${
-              i === 1
-                ? "!bg-[linear-gradient(135deg,var(--card-bg),var(--tint-lime))]"
-                : "!bg-[linear-gradient(135deg,var(--card-bg),var(--tint-blue))]"
-            }`}
-          >
-            <Icon className="h-6 w-6 shrink-0 text-[var(--blue)]" strokeWidth={1.6} />
-            <div>
-              <p className="text-[15px] font-bold text-[var(--ink)]">{title}</p>
-              <p className="mt-1 text-[12.5px] text-[var(--slate)]">{text}</p>
+      <ul className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+        {IDADES.map(({ Icon, title, text, img, alt }, i) => (
+          <li key={title} className={`card-soft overflow-hidden ${i % 2 ? "md:mt-6" : ""}`}>
+            <img
+              src={img}
+              alt={alt}
+              width={1024}
+              height={1024}
+              loading="lazy"
+              className="aspect-square w-full border-b-2 border-[var(--edge)] object-cover"
+            />
+            <div className="p-4 md:p-5">
+              <p className="flex items-center gap-2 text-[14px] font-bold text-[var(--ink)] md:text-[15px]">
+                <Icon className="h-4 w-4 shrink-0 text-[var(--blue)]" strokeWidth={2.2} />
+                {title}
+              </p>
+              <p className="mt-1 text-[12px] leading-snug text-[var(--slate)] md:text-[12.5px]">
+                {text}
+              </p>
             </div>
-            <span className="pointer-events-none absolute -bottom-3 right-4 font-display text-[72px] font-extrabold leading-none text-[var(--blue)]/[0.07]">
-              {n}
-            </span>
           </li>
         ))}
       </ul>

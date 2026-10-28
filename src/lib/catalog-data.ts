@@ -108,8 +108,11 @@ export const SEED_PRODUCTS: CatalogProduct[] = [
     images: [
       "/produtos/principal.webp",
       "/produtos/reflexo.webp",
+      "/fotos/pai-e-filho.webp",
       "/produtos/controle.webp",
+      "/fotos/amigos-noite.webp",
       "/produtos/espuma.webp",
+      "/fotos/avo-e-neta.webp",
       "/produtos/natal.webp",
       "/produtos/medidas.webp",
     ],
