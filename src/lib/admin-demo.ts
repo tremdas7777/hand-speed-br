@@ -157,7 +157,7 @@ function pedidos(days: number): AdminOrder[] {
     });
     // Pós-compra: parte de quem pagou leva mais 1 jogo com desconto (e às vezes o seguro).
     if (pago && r() < 0.35) {
-      const ofertas: [string, number][] = [["Mais 1 jogo 50% OFF", 33.5]];
+      const ofertas: [string, number][] = [["Mais 1 jogo 50% OFF", 19.95]];
       if (r() < 0.4) ofertas.push(["Seguro de entrega", 29.9]);
       ofertas.forEach(([label, valor], k) => {
         const quando = new Date(criado + (6 + k * 2) * 60_000).toISOString();

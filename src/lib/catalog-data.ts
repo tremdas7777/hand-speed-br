@@ -50,18 +50,19 @@ export type CatalogData = {
 
 /**
  * Catálogo inicial: o Hand Speed (jogo de pegar o bastão), vendido em 1, 2 ou 3 unidades.
- * Preços: R$ 67 (1 jogo), R$ 97 (2) e R$ 127 (3), os mesmos da Beam. O "de" (riscado) é
- * PROVISÓRIO: R$ 99,90 por jogo — confirme antes de vender.
+ * Preços (28/10): R$ 39,90 (1 jogo), R$ 57,90 (2) e R$ 75,90 (3), na mesma proporção dos tickets
+ * anteriores (67/97/127). O "de" (riscado) é PROVISÓRIO: R$ 59,90 por jogo, o mesmo desconto de antes
+ * — confirme antes de vender.
  */
 export const KIT_HANDLE = "hand-speed";
 export const QTD_OPTION = "Quantidade";
 
-const POR_JOGO_CHEIO = 99.9;
+const POR_JOGO_CHEIO = 59.9;
 
 export const OFERTAS = [
-  { jogos: 1, price: 67 },
-  { jogos: 2, price: 97 },
-  { jogos: 3, price: 127 },
+  { jogos: 1, price: 39.9 },
+  { jogos: 2, price: 57.9 },
+  { jogos: 3, price: 75.9 },
 ] as const;
 
 /** "1 jogo", "2 jogos" (o nome da variação). */
