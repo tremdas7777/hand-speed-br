@@ -27,15 +27,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <div id="top" className="galaxy relative isolate flex min-h-screen flex-col">
-      {/* Fundo de galáxia fixo atrás da página (versão em pé para o celular). */}
-      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-[#070b22]">
-        <picture>
-          <source media="(max-width: 767px)" srcSet="/fundo/galaxia-m.webp" />
-          <img src="/fundo/galaxia.webp" alt="" className="h-full w-full object-cover" />
-        </picture>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,11,34,0.55),rgba(7,11,34,0.35)_40%,rgba(7,11,34,0.6))]" />
-      </div>
+    <div id="top" className="relative isolate flex min-h-screen flex-col">
       <div ref={chromeRef} className="fixed top-0 inset-x-0 z-50 flex flex-col">
         <AnnouncementBar />
         <Header />

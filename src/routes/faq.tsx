@@ -31,7 +31,7 @@ function Page() {
     <SiteLayout>
       <section className="container-edge max-w-3xl py-14 md:py-20">
         <span className="eyebrow">Antes da primeira rodada</span>
-        <h1 className="display mt-3 text-[52px] md:text-[72px]">
+        <h1 className="display mt-3 text-[38px] md:text-[54px]">
           Dúvidas <em>frequentes</em>
         </h1>
         <div className="mt-10 divide-y divide-[var(--border)] rounded-2xl border border-[var(--border)] bg-[var(--card-bg)]">

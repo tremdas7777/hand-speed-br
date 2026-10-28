@@ -12,7 +12,7 @@ export function Logo({ className, size = "md" }: { className?: string; size?: "s
       className={cn(
         "block w-auto select-none",
         size === "sm" && "h-10",
-        size === "md" && "h-11 md:h-[52px]",
+        size === "md" && "h-12 md:h-[58px]",
         size === "lg" && "h-16 md:h-20",
         className,
       )}

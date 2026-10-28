@@ -9,9 +9,9 @@ export const OFERTA_PADRAO = 2;
 
 /** Para que serve cada quantidade (linha pequena embaixo do nome da oferta). */
 export const OFERTA_USO: Record<number, string> = {
-  1: "Para treinar o reflexo em casa",
+  1: "Para a família toda jogar junto",
   2: "Duelo lado a lado: quem pega mais?",
-  3: "Para presentear mais de uma criança",
+  3: "Para presentear ou jogar em grupo",
 };
 
 /** O que vem na caixa de cada jogo (foto medidas.webp). */
@@ -71,7 +71,11 @@ export const FAQ_KIT: readonly { q: string; a: string }[] = [
   },
   {
     q: "Para qual idade é?",
-    a: "A partir de 3 anos, começando pela velocidade mais lenta. Adultos jogam junto nas velocidades mais rápidas, então pais, avós e irmãos entram na disputa.",
+    a: "Para a família toda. Crianças a partir de 3 anos começam na velocidade mais lenta, e os adultos encaram as mais rápidas. Assim pais, avós, tios e irmãos entram na mesma disputa.",
+  },
+  {
+    q: "Adulto também joga?",
+    a: "Joga, e quase ninguém pega os 6 de primeira. Na velocidade mais rápida o desafio fica difícil de verdade, bom para festas, churrasco e encontro com os amigos.",
   },
   {
     q: "Onde eu penduro?",
@@ -83,7 +87,7 @@ export const FAQ_KIT: readonly { q: string; a: string }[] = [
   },
   {
     q: "Por que levar 2 ou 3 jogos?",
-    a: "Com 2 jogos dá para pendurar um ao lado do outro e disputar ao mesmo tempo: quem pegar mais bastões, ganha. Os 3 jogos são para quem vai presentear mais de uma criança, como irmãos, primos ou afilhados.",
+    a: "Com 2 jogos dá para pendurar um ao lado do outro e disputar ao mesmo tempo: pai contra filho, casal contra casal, quem pegar mais bastões ganha. Os 3 jogos são para presentear mais de uma pessoa ou para jogar em grupo nas festas.",
   },
   {
     q: "Quando meu pedido chega?",
@@ -96,4 +100,4 @@ export const FAQ_KIT: readonly { q: string; a: string }[] = [
 ];
 
 /** As 4 da home. */
-export const FAQ_HOME = [FAQ_KIT[1]!, FAQ_KIT[4]!, FAQ_KIT[3]!, FAQ_KIT[8]!];
+export const FAQ_HOME = [FAQ_KIT[1]!, FAQ_KIT[4]!, FAQ_KIT[5]!, FAQ_KIT[9]!];

@@ -90,7 +90,7 @@ export const SEED_PRODUCTS: CatalogProduct[] = [
     description: [
       "O desafio de reflexo que viralizou: a barra solta os 6 bastões de espuma sem aviso e você tem que pegar antes de cair no chão. Quem pegar mais, ganha.",
       "São 3 velocidades e aviso por voz. Pelo controle remoto dá para ligar a queda aleatória ou escolher qual bastão cai. A bateria é interna e carrega pelo cabo USB-C que vem na caixa.",
-      "Pendure com o cordão ou com o gancho adesivo. Os bastões são de espuma EVA macia, com pontas arredondadas. A partir de 3 anos.",
+      "Pendure com o cordão ou com o gancho adesivo. Os bastões são de espuma EVA macia, com pontas arredondadas. Para a família toda: crianças a partir de 3 anos e adultos.",
     ].join("\n\n"),
     productType: "Jogo de reflexo",
     vendor: "HAND SPEED",

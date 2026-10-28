@@ -47,7 +47,7 @@ export function CartDrawer() {
 
   return (
     <Sheet open={open} onOpenChange={setCartOpen}>
-      <SheetContent side="right" className="galaxy flex w-[92%] max-w-md flex-col gap-0 border-[var(--line)] bg-[#0a1030] p-0 text-[var(--ink)]">
+      <SheetContent side="right" className="flex w-[92%] max-w-md flex-col gap-0 border-l-[2.5px] border-[var(--edge)] bg-[var(--paper)] p-0 text-[var(--ink)]">
         <div className="border-b border-[var(--line)] px-5 pb-4 pt-5">
           <SheetTitle className="text-[13px] font-extrabold uppercase tracking-[0.14em] text-[var(--ink)]">
             Carrinho {count > 0 && `(${count})`}

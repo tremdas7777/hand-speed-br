@@ -38,7 +38,7 @@ function Page() {
       <section className="container-edge grid items-center gap-10 py-14 md:grid-cols-2 md:py-24 lg:gap-16">
         <div>
           <p className="eyebrow">Sobre a marca</p>
-          <h1 className="display mt-3 text-[52px] md:text-[88px]">
+          <h1 className="display mt-3 text-[38px] md:text-[64px]">
             Menos tela. <em>Mais jogo.</em>
           </h1>
           <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-[var(--ink)]">

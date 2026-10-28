@@ -6,7 +6,7 @@
 
 @theme inline {
   --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  --font-display: "Luckiest Guy", "Arial Black", Impact, sans-serif;
 
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -45,8 +45,11 @@
 :root {
   --radius: 0.75rem;
 
-  /* Paleta HAND SPEED — azul-marinho da caixa nos textos, azul dos bastões nos destaques e amarelo nos botões. */
-  --paper: #ffffff;
+  /*
+   * Identidade HAND SPEED ("brinquedo adesivo"): amarelo da barra nos botões, azul dos bastões nos
+   * destaques, azul-marinho da caixa nos textos e no contorno grosso (--edge), laranja nos selos.
+   */
+  --paper: #fffdf6;
   --surface: #ffffff;
   --ink: #0b1640;
   --night: #0b1640;
@@ -55,7 +58,10 @@
   --lime: #ffd21f;
   --lime-deep: #d9a800;
   --dark: #09121e;
-  /* Faixas claras (céu) e o leve verde do degradê. */
+  --orange: #ff7a1a;
+  /* Contorno e sombra dura dos botões e cartões (como o contorno da logo). */
+  --edge: #0b1640;
+  /* Faixas claras. */
   --sky: #f4f8ff;
   --sky-strong: #e8f0ff;
   --mint: #f4f8ff;
@@ -63,7 +69,7 @@
   --tile: #eef3fb;
   --line: #e2e8f2;
   /* Texto secundário. */
-  --slate: #586d8a;
+  --slate: #4a5878;
 
   --background: var(--paper);
   --foreground: var(--ink);
@@ -98,10 +104,10 @@
   --ring: var(--blue);
 
   /* Superfícies dos componentes da vitrine (o tema galáxia troca todas). */
-  --fade-rgb: 255 255 255;
+  --fade-rgb: 255 253 246;
   --card-bg: #ffffff;
-  --tint-blue: #f4f8ff;
-  --tint-lime: #f3fde4;
+  --tint-blue: #eaf1ff;
+  --tint-lime: #fff4c4;
   --chip-bg: rgba(255, 255, 255, 0.9);
   --solid-bg: #0b1640;
   --save: #13803c;
@@ -112,56 +118,32 @@
 }
 
 /*
- * Tema galáxia (vitrine): fundo de estrelas fixo atrás de tudo, textos claros e cartões de vidro
- * escuro. O checkout e o admin ficam fora dele e continuam claros.
+ * Faixa azul-marinho (seções escuras, rodapé, faixa de avisos): textos claros, destaque amarelo.
+ * Os componentes leem as mesmas variáveis, então só trocam de cor.
  */
-.galaxy {
+.navy {
   color-scheme: dark;
-  --ink: #f2f5ff;
-  --night: #f2f5ff;
-  /* Textos secundários também em branco (o cinza se perdia no fundo). */
-  --slate: #ffffff;
-  /* Na galáxia o destaque é o amarelo da barra (o azul some no fundo escuro). */
+  --ink: #ffffff;
+  --night: #ffffff;
+  --slate: #c9d4ef;
   --blue: #ffd21f;
   --blue-dark: #ffc400;
   --on-blue: #0b1640;
-  --cyan: #6cb8ff;
-  --line: rgba(160, 182, 255, 0.16);
+  --line: rgba(255, 255, 255, 0.14);
   --tile: rgba(255, 255, 255, 0.06);
   --sky: rgba(255, 255, 255, 0.04);
-  --sky-strong: rgba(255, 255, 255, 0.07);
-  --mint: rgba(255, 255, 255, 0.04);
-  --bone: rgba(255, 255, 255, 0.05);
-
-  --background: #070b22;
-  --foreground: var(--ink);
-  --card: rgba(16, 24, 62, 0.6);
-  --card-foreground: var(--ink);
-  --popover: #0d1434;
-  --popover-foreground: var(--ink);
-  --primary: #ffd21f;
-  --primary-foreground: #0b1640;
-  --muted: rgba(255, 255, 255, 0.05);
-  --muted-foreground: #ffffff;
-  --accent: rgba(255, 255, 255, 0.06);
-  --accent-foreground: var(--ink);
-  --secondary: rgba(255, 255, 255, 0.06);
-  --secondary-foreground: var(--ink);
-  --border: rgba(160, 182, 255, 0.16);
-  --input: rgba(190, 205, 255, 0.26);
-  --ring: var(--blue);
-
-  --fade-rgb: 7 11 34;
-  --card-bg: rgba(14, 21, 56, 0.62);
-  --tint-blue: rgba(70, 140, 255, 0.16);
-  --tint-lime: rgba(255, 210, 31, 0.1);
-  --chip-bg: rgba(7, 11, 34, 0.78);
-  --solid-bg: rgba(60, 100, 255, 0.2);
+  --card-bg: #14225a;
+  --tint-blue: #1a2b6e;
+  --tint-lime: #2a2f5a;
+  --fade-rgb: 11 22 64;
+  --edge: #050b26;
   --save: #ffd21f;
+  --muted: rgba(255, 255, 255, 0.06);
+  --muted-foreground: #c9d4ef;
+  --border: rgba(255, 255, 255, 0.14);
+  --input: rgba(255, 255, 255, 0.24);
+  background-color: #0b1640;
   color: var(--ink);
-}
-body:has(.galaxy) {
-  background-color: #070b22;
 }
 
 @layer base {
@@ -185,8 +167,16 @@ body:has(.galaxy) {
   }
   h1, h2, h3 {
     font-family: var(--font-display);
-    font-weight: 800;
-    letter-spacing: -0.01em;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  /* A fonte de título só tem um peso: nada de negrito ou itálico "falso" do navegador. */
+  .font-display, .display, h1, h2, h3 {
+    font-synthesis: none;
+  }
+  body {
+    background-image: radial-gradient(rgba(11, 22, 64, 0.05) 1.2px, transparent 1.3px);
+    background-size: 22px 22px;
   }
   h4, h5, h6 {
     font-family: var(--font-sans);
@@ -216,26 +206,30 @@ body:has(.galaxy) {
     text-transform: uppercase;
     color: var(--blue);
   }
-  .galaxy .eyebrow { color: var(--cyan); }
 
-  /* Títulos de seção: condensado, caixa alta, pesado; a 2ª linha (em) vai em azul. */
+  /* Títulos de seção: a fonte da logo, caixa alta; a 2ª linha (em) em azul com marca-texto amarelo. */
   .display {
     font-family: var(--font-display);
-    font-weight: 800;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: -0.015em;
-    line-height: 0.92;
+    letter-spacing: 0.01em;
+    line-height: 1.02;
     color: var(--ink);
   }
   .display em {
     font-style: normal;
     color: var(--blue);
+    padding-inline: 0.08em;
+    background: linear-gradient(transparent 58%, var(--lime) 58% 92%, transparent 92%);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
-  .galaxy .display em {
-    text-shadow: 0 0 26px rgba(255, 210, 31, 0.3);
+  .navy .display em {
+    background: none;
+    padding-inline: 0;
   }
 
-  /* Botão principal: amarelo com a borda de baixo mais escura (efeito de tecla). */
+  /* Botão principal: amarelo com contorno azul-marinho e sombra dura (adesivo). */
   .btn-lime {
     display: inline-flex;
     align-items: center;
@@ -247,30 +241,33 @@ body:has(.galaxy) {
     font-size: 0.78rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    border-radius: 0.6rem;
-    box-shadow: inset 0 -4px 0 var(--lime-deep), 0 10px 24px -12px rgba(230, 180, 0, 0.6);
+    border: 2.5px solid #0b1640;
+    border-radius: 0.85rem;
+    box-shadow: 0 5px 0 #0b1640;
     transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
   }
-  .btn-lime:hover { filter: brightness(1.04); transform: translateY(-1px); }
-  .btn-lime:active { transform: translateY(1px); box-shadow: inset 0 -2px 0 var(--lime-deep); }
+  .btn-lime:hover { filter: brightness(1.04); transform: translateY(-2px); box-shadow: 0 7px 0 #0b1640; }
+  .btn-lime:active { transform: translateY(3px); box-shadow: 0 2px 0 #0b1640; }
+  .navy .btn-lime { border-color: #050b26; box-shadow: 0 5px 0 #050b26; }
 
   /* Botão de compra da página do produto: amarelo da barra, letra azul-marinho grande, só "COMPRAR AGORA". */
   .btn-buy {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, #ffe14d, #ffc400);
+    background: #ffd21f;
     color: #0b1640;
-    font-weight: 800;
-    letter-spacing: 0.1em;
+    font-family: var(--font-display);
+    font-synthesis: none;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
-    border-radius: 0.75rem;
-    box-shadow: inset 0 -5px 0 #c99400, 0 16px 40px -16px rgba(255, 200, 0, 0.75);
+    border: 3px solid #0b1640;
+    border-radius: 1rem;
+    box-shadow: 0 6px 0 #0b1640;
     transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
   }
-  .btn-buy:hover { filter: brightness(1.05); transform: translateY(-1px); }
-  .btn-buy:active { transform: translateY(1px); box-shadow: inset 0 -2px 0 #c99400; }
+  .btn-buy:hover { filter: brightness(1.04); transform: translateY(-2px); box-shadow: 0 8px 0 #0b1640; }
+  .btn-buy:active { transform: translateY(4px); box-shadow: 0 2px 0 #0b1640; }
 
   /* Botão de WhatsApp do rodapé: mesma tecla do .btn-lime, no verde do WhatsApp. */
   .btn-whats {
@@ -303,28 +300,29 @@ body:has(.galaxy) {
     color: var(--blue);
   }
 
-  /* Faixa clara com o degradê azul → amarelo da marca. */
+  /* Faixa amarelo-clara com bolinhas (alterna com o fundo creme e as faixas azul-marinho). */
   .band-sky {
-    background:
-      radial-gradient(60rem 30rem at 100% 100%, rgba(255, 210, 31, 0.16), transparent 60%),
-      linear-gradient(180deg, #f6faff, #f3f8ff);
+    background-color: #fff3c2;
+    background-image: radial-gradient(rgba(11, 22, 64, 0.08) 1.3px, transparent 1.4px);
+    background-size: 20px 20px;
   }
-  .galaxy .band-sky {
-    background:
-      radial-gradient(60rem 30rem at 100% 100%, rgba(255, 210, 31, 0.08), transparent 60%),
-      linear-gradient(180deg, rgba(40, 64, 170, 0.16), rgba(20, 30, 90, 0.1));
+  /* Linhas de velocidade em diagonal, para as faixas azul-marinho. */
+  .speed-lines {
+    background-image: repeating-linear-gradient(-24deg, transparent 0 46px, rgba(255, 255, 255, 0.035) 46px 50px);
   }
 
+  /* Cartão adesivo: contorno grosso e sombra dura. */
   .card-soft {
     background: var(--card-bg);
-    border: 1px solid var(--line);
-    border-radius: 1rem;
-    box-shadow: 0 18px 40px -28px rgba(16, 28, 59, 0.35);
+    border: 2px solid var(--edge);
+    border-radius: 1.1rem;
+    box-shadow: 5px 5px 0 var(--edge);
   }
-  .galaxy .card-soft {
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 24px 60px -34px rgba(0, 0, 0, 0.9);
+  /* Moldura de foto no mesmo estilo. */
+  .sticker {
+    border: 3px solid var(--edge);
+    border-radius: 1.25rem;
+    box-shadow: 7px 7px 0 var(--edge);
   }
 
   .marquee {

@@ -73,7 +73,7 @@ function Page() {
         </nav>
         <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="display text-[44px] md:text-[72px]">{c.name}</h1>
+            <h1 className="display text-[34px] md:text-[54px]">{c.name}</h1>
             <p className="mt-2 text-[14px] text-[var(--ink)]">{c.desc}</p>
           </div>
         </div>

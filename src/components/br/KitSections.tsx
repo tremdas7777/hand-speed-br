@@ -4,19 +4,33 @@ import { Display, Eyebrow, LimeLink, TextLink } from "@/components/br/ui";
 import { MODOS, NA_CAIXA } from "@/lib/hand-speed";
 import { cn } from "@/lib/utils";
 
-const shadow = "shadow-[0_30px_60px_-34px_rgba(11,22,64,0.5)]";
+/** Moldura de foto da marca (contorno grosso + sombra dura, ver .sticker em styles.css). */
+const shadow = "sticker";
+
+/** Um bastão solto (enfeite): azul com as pontas amarelas e contorno azul-marinho. */
+export function Bastao({ className }: { className?: string }) {
+  return (
+    <span
+      aria-hidden
+      className={cn(
+        "pointer-events-none block h-28 w-6 rounded-lg border-[2.5px] border-[#0b1640] bg-[linear-gradient(#ffd21f_0_14%,#2f6ff0_14%_86%,#ffd21f_86%)] shadow-[3px_3px_0_#0b1640]",
+        className,
+      )}
+    />
+  );
+}
 
 /** Desenho da barra amarela com os 6 bastões azuis; os de `cai` aparecem mais baixos (caindo). */
 export function Barra({ cai = [], className }: { cai?: readonly number[]; className?: string }) {
   return (
     <div className={cn("relative", className)} aria-hidden>
-      <div className="h-4 rounded-full bg-[#ffd21f] shadow-[inset_0_-3px_0_#d9a800]" />
-      <div className="mt-0.5 flex justify-between px-[4%]">
+      <div className="relative z-10 h-5 rounded-full border-[2.5px] border-[#0b1640] bg-[#ffd21f] shadow-[inset_0_-3px_0_#d9a800]" />
+      <div className="-mt-0.5 flex justify-between px-[4%]">
         {[1, 2, 3, 4, 5, 6].map((k) => (
           <span
             key={k}
             className={cn(
-              "block h-20 w-[9%] rounded-b-md border-b-[6px] border-[#ffd21f] bg-[#2f6ff0] transition-transform duration-500",
+              "block h-20 w-[10%] rounded-b-md border-[2.5px] border-t-0 border-[#0b1640] bg-[linear-gradient(#2f6ff0_80%,#ffd21f_80%)] transition-transform duration-500",
               cai.includes(k) && "translate-y-6",
             )}
           />
@@ -30,7 +44,7 @@ export function MesmaSala() {
   return (
     <section className="container-edge py-16 md:py-24">
       <Eyebrow>O desafio que viralizou</Eyebrow>
-      <Display top="Caiu?" em="Pegou!" className="mt-4 text-[52px] md:text-[76px]" />
+      <Display top="Caiu?" em="Pegou!" className="mt-4 text-[38px] md:text-[56px]" />
       <p className="mt-4 max-w-xl text-[14.5px] text-[var(--slate)]">
         Seis bastões, nenhum aviso. A barra solta um de cada vez e você tem que pegar antes de
         chegar no chão.
@@ -41,12 +55,16 @@ export function MesmaSala() {
         width={1200}
         height={1200}
         loading="lazy"
-        className={`mt-8 aspect-[4/3] w-full rounded-2xl object-cover object-[50%_35%] md:aspect-[16/9] ${shadow}`}
+        className={`mt-8 aspect-[4/3] w-full object-cover object-[50%_35%] md:aspect-[16/9] ${shadow}`}
       />
       <ul className="mt-8 grid gap-6 md:grid-cols-3">
         {[
           [Hand, "Reflexo de verdade", "Treina a atenção e a coordenação entre a mão e o olho."],
-          [Users, "Pais contra filhos", "Todo mundo joga, do pequeno de 3 anos ao avô."],
+          [
+            Users,
+            "Pais contra filhos",
+            "Todo mundo joga, do pequeno de 3 anos ao avô. Adulto também erra!",
+          ],
           [Smile, "Risada garantida", "O bastão que escapa por um triz vira assunto da noite."],
         ].map(([Icon, t, d]) => {
           const I = Icon as typeof Hand;
@@ -69,10 +87,14 @@ export function Modos() {
   const [i, setI] = useState(0);
   const m = MODOS[i]!;
   return (
-    <section className="band-sky border-y border-[var(--line)]">
+    <section className="navy speed-lines border-y-[2.5px] border-[var(--edge)]">
       <div className="container-edge py-16 md:py-24">
         <Eyebrow>Quatro jeitos de jogar</Eyebrow>
-        <Display top="Qual vai ser" em="o desafio de hoje?" className="mt-4 text-[52px] md:text-[76px]" />
+        <Display
+          top="Qual vai ser"
+          em="o desafio de hoje?"
+          className="mt-4 text-[38px] md:text-[56px]"
+        />
         <p className="mt-4 text-[14.5px] text-[var(--slate)]">
           Troque o modo e a velocidade a cada rodada.
         </p>
@@ -119,7 +141,9 @@ export function Modos() {
               {m.name}
             </p>
             <p className="mt-3 max-w-xs text-[13.5px] text-[var(--slate)]">{m.text}</p>
-            <div className={cn("mt-7 grid gap-4", m.cai.length > 1 ? "grid-cols-2" : "max-w-[260px]")}>
+            <div
+              className={cn("mt-7 grid gap-4", m.cai.length > 1 ? "grid-cols-2" : "max-w-[260px]")}
+            >
               {m.cai.length > 1 ? (
                 <>
                   <Barra cai={[m.cai[0]!]} />
@@ -148,11 +172,11 @@ export function Controle() {
         width={1200}
         height={1200}
         loading="lazy"
-        className={`aspect-square w-full rounded-2xl bg-white object-cover ${shadow}`}
+        className={`aspect-square w-full bg-white object-cover ${shadow}`}
       />
       <div>
         <Eyebrow>Controle remoto incluso</Eyebrow>
-        <Display top="Você comanda" em="a rodada" className="mt-4 text-[52px] md:text-[72px]" />
+        <Display top="Você comanda" em="a rodada" className="mt-4 text-[38px] md:text-[54px]" />
         <p className="mt-5 max-w-sm text-[14.5px] leading-relaxed text-[var(--slate)]">
           Um adulto segura o controle enquanto a criança joga. Ou o contrário, para a revanche.
         </p>
@@ -190,17 +214,29 @@ export function Seguro() {
             width={1200}
             height={1200}
             loading="lazy"
-            className={`aspect-square w-full rounded-2xl object-cover ${shadow}`}
+            className={`aspect-square w-full object-cover ${shadow}`}
           />
         </div>
         <div>
-          <Eyebrow>Feito para criança jogar</Eyebrow>
-          <Display top="Macio na mão," em="firme na barra" className="mt-4 text-[52px] md:text-[72px]" />
+          <Eyebrow>Da criança ao avô</Eyebrow>
+          <Display
+            top="Macio na mão,"
+            em="firme na barra"
+            className="mt-4 text-[38px] md:text-[54px]"
+          />
           <ul className="mt-8 space-y-5">
             {[
               [Feather, "Espuma EVA macia", "Bastões leves, com pontas arredondadas."],
-              [BatteryCharging, "Bateria interna", "Sem pilha: carrega pelo cabo USB-C que vem na caixa."],
-              [Gift, "A partir de 3 anos", "Na velocidade mais lenta; adultos jogam nas rápidas."],
+              [
+                BatteryCharging,
+                "Bateria interna",
+                "Sem pilha: carrega pelo cabo USB-C que vem na caixa.",
+              ],
+              [
+                Gift,
+                "Crianças e adultos",
+                "Os pequenos começam na lenta; os adultos encaram a mais rápida.",
+              ],
             ].map(([Icon, t, d]) => {
               const I = Icon as typeof Feather;
               return (
@@ -232,15 +268,23 @@ export function ComoJogar() {
   return (
     <section id="como-jogar" className="container-edge scroll-mt-28 py-16 md:py-24">
       <Eyebrow>Fácil de começar</Eyebrow>
-      <Display top="Da caixa para" em="a primeira rodada" className="mt-4 text-[52px] md:text-[76px]" />
+      <Display
+        top="Da caixa para"
+        em="a primeira rodada"
+        className="mt-4 text-[38px] md:text-[56px]"
+      />
       <ul className="mt-10 grid gap-4 md:grid-cols-3 md:gap-5">
         {passos.map((p, n) => (
           <li
             key={p.t}
             className="card-soft relative overflow-hidden !bg-[linear-gradient(160deg,var(--card-bg),var(--tint-blue))] p-6 after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:bg-[linear-gradient(90deg,#2f6ff0,var(--lime))]"
           >
-            <p className="font-display text-[56px] font-extrabold leading-none text-[var(--blue)]">0{n + 1}</p>
-            <p className="mt-5 font-display text-[26px] font-extrabold uppercase text-[var(--ink)]">{p.t}</p>
+            <p className="font-display text-[56px] font-extrabold leading-none text-[var(--blue)]">
+              0{n + 1}
+            </p>
+            <p className="mt-5 font-display text-[26px] font-extrabold uppercase text-[var(--ink)]">
+              {p.t}
+            </p>
             <p className="mt-2 text-[13.5px] text-[var(--slate)]">{p.d}</p>
           </li>
         ))}
@@ -255,7 +299,7 @@ export function NaCaixa() {
       <div className="container-edge grid items-center gap-10 py-16 md:grid-cols-2 md:gap-16 md:py-24">
         <div>
           <Eyebrow>O que vem em cada jogo</Eyebrow>
-          <Display top="Tudo pronto" em="para jogar" className="mt-4 text-[52px] md:text-[72px]" />
+          <Display top="Tudo pronto" em="para jogar" className="mt-4 text-[38px] md:text-[54px]" />
           <ul className="mt-7 space-y-5">
             {NA_CAIXA.map((i) => (
               <li key={i.t} className="flex items-center gap-5">
@@ -282,7 +326,7 @@ export function NaCaixa() {
           width={1200}
           height={1200}
           loading="lazy"
-          className={`aspect-square w-full rounded-2xl bg-white object-cover ${shadow}`}
+          className={`aspect-square w-full bg-white object-cover ${shadow}`}
         />
       </div>
     </section>

@@ -92,7 +92,7 @@ export function Footer() {
   );
 
   return (
-    <footer className="bg-[rgb(var(--fade-rgb)/0.72)] text-[var(--ink)] backdrop-blur-sm">
+    <footer className="navy speed-lines border-t-[2.5px] border-[var(--edge)] text-[var(--ink)]">
       <div className="container-edge border-t border-[var(--line)] pb-8 pt-14 md:pt-16">
         <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
           <div>

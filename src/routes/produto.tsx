@@ -4,7 +4,14 @@ import { Check, ShieldCheck, Truck, Undo2 } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { Gallery } from "@/components/br/Gallery";
 import { Display, Eyebrow, FaqList, FinalCta, Ticker } from "@/components/br/ui";
-import { ComoJogar, Controle, MesmaSala, Modos, NaCaixa, Seguro } from "@/components/br/KitSections";
+import {
+  ComoJogar,
+  Controle,
+  MesmaSala,
+  Modos,
+  NaCaixa,
+  Seguro,
+} from "@/components/br/KitSections";
 import { usePayInfo } from "@/hooks/usePayInfo";
 import { brand } from "@/lib/brand";
 import { metaTrack } from "@/lib/meta-pixel";
@@ -36,7 +43,7 @@ export const Route = createFileRoute("/produto")({
     const p = getBundle(bundleIdFromSearch({ plano: loaderData?.plano ?? undefined }));
     return seo({
       path: productPath(p),
-      title: `${p.name}: jogo de reflexo para a família | ${brand.name}`,
+      title: `${p.name}: jogo de reflexo para toda a família | ${brand.name}`,
       description: `${p.name}: a barra solta 6 bastões de espuma e você pega antes de cair. 3 velocidades e controle remoto. 1, 2 ou 3 jogos a partir de ${brl(p.price)}. ${FREE_SHIPPING_LABEL}.`,
       image: p.img,
       imageAlt: p.name,
@@ -52,10 +59,24 @@ type Opcao = { label: string; jogos: number; priced: Bundle };
 
 function opcoes(p: Bundle): Opcao[] {
   const values = p.options[0]?.values ?? [];
-  return values.map((label) => ({ label, jogos: jogosDe(label), priced: withVariantPrice(p, [label]) }));
+  return values.map((label) => ({
+    label,
+    jogos: jogosDe(label),
+    priced: withVariantPrice(p, [label]),
+  }));
 }
 
-function SquadCard({ o, on, best, onPick }: { o: Opcao; on: boolean; best: boolean; onPick: () => void }) {
+function SquadCard({
+  o,
+  on,
+  best,
+  onPick,
+}: {
+  o: Opcao;
+  on: boolean;
+  best: boolean;
+  onPick: () => void;
+}) {
   const off = discountPct(o.priced);
   const economia = o.priced.compareAtPrice ? o.priced.compareAtPrice - o.priced.price : 0;
   return (
@@ -65,30 +86,30 @@ function SquadCard({ o, on, best, onPick }: { o: Opcao; on: boolean; best: boole
       aria-checked={on}
       onClick={onPick}
       className={cn(
-        "relative flex w-full items-center gap-4 rounded-2xl border-2 bg-[var(--card-bg)] px-4 py-4 text-left backdrop-blur transition md:px-5",
+        "relative flex w-full items-center gap-4 rounded-2xl border-2 px-4 py-4 text-left transition md:px-5",
         on
-          ? "border-[var(--blue)] shadow-[0_18px_40px_-22px_rgba(255,210,31,0.45)]"
-          : "border-[var(--line)] hover:border-[var(--blue)]/40",
+          ? "border-[var(--edge)] bg-[var(--tint-lime)] shadow-[4px_4px_0_var(--edge)]"
+          : "border-[var(--edge)]/25 bg-white hover:border-[var(--edge)]",
       )}
     >
       {best && (
-        <span className="absolute -top-3 right-4 rotate-2 rounded-md bg-[var(--blue)] px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.1em] text-[var(--on-blue)] shadow-md">
+        <span className="absolute -top-3.5 right-4 rotate-2 rounded-md border-2 border-[var(--edge)] bg-[var(--orange)] px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.1em] text-white shadow-[2px_2px_0_var(--edge)]">
           ✦ Mais vendido
         </span>
       )}
       <span
         className={cn(
           "grid h-5 w-5 shrink-0 place-items-center rounded-full border-2",
-          on ? "border-[var(--blue)]" : "border-[var(--input)]",
+          on ? "border-[var(--edge)]" : "border-[var(--input)]",
         )}
       >
-        {on && <span className="h-2.5 w-2.5 rounded-full bg-[var(--blue)]" />}
+        {on && <span className="h-2.5 w-2.5 rounded-full bg-[var(--edge)]" />}
       </span>
       <span className="min-w-0 flex-1">
         <span className="flex flex-wrap items-center gap-2">
           <span className="text-[15px] font-bold text-[var(--ink)]">{o.label}</span>
           {off > 0 && (
-            <span className="rounded bg-[var(--lime)] px-1.5 py-0.5 text-[9.5px] font-extrabold text-[var(--on-lime)]">
+            <span className="rounded border border-[var(--edge)] bg-[var(--lime)] px-1.5 py-0.5 text-[9.5px] font-extrabold text-[var(--on-lime)]">
               −{off}% OFF
             </span>
           )}
@@ -104,7 +125,9 @@ function SquadCard({ o, on, best, onPick }: { o: Opcao; on: boolean; best: boole
       </span>
       <span className="text-right">
         {o.priced.compareAtPrice && (
-          <span className="block text-[11px] text-[var(--slate)] line-through">{brl(o.priced.compareAtPrice)}</span>
+          <span className="block text-[11px] text-[var(--slate)] line-through">
+            {brl(o.priced.compareAtPrice)}
+          </span>
         )}
         <span className="block font-display text-[26px] font-extrabold leading-none text-[var(--ink)]">
           {brl(o.priced.price)}
@@ -159,20 +182,34 @@ function Page() {
           </div>
 
           <div>
-            <p className="text-[12px] font-extrabold uppercase tracking-[0.18em] text-[var(--slate)]">{brand.name}</p>
-            <Display as="h1" top={<><span className="sr-only">Hand Speed: </span>Desafio do</>} em="Bastão" className="mt-2 text-[48px] md:text-[64px]" />
+            <p className="text-[12px] font-extrabold uppercase tracking-[0.18em] text-[var(--slate)]">
+              {brand.name}
+            </p>
+            <Display
+              as="h1"
+              top={
+                <>
+                  <span className="sr-only">Hand Speed: </span>Desafio do
+                </>
+              }
+              em="Bastão"
+              className="mt-2 text-[36px] md:text-[48px]"
+            />
             <p className="mt-4 max-w-md text-[14.5px] leading-relaxed text-[var(--slate)]">
-              A barra solta os 6 bastões sem aviso e você pega antes de cair. Quem pegar mais, ganha.
+              A barra solta os 6 bastões sem aviso e você pega antes de cair. Crianças, pais e avós
+              no mesmo desafio: quem pegar mais, ganha.
             </p>
             <ul className="mt-4 flex flex-wrap gap-2">
-              {["3+ anos", "3 velocidades", "Controle remoto", "Bateria USB-C"].map((t) => (
-                <li
-                  key={t}
-                  className="rounded-md border border-[var(--line)] bg-[var(--card-bg)] px-2.5 py-1 text-[9.5px] font-extrabold uppercase tracking-[0.1em] text-[var(--ink)]"
-                >
-                  {t}
-                </li>
-              ))}
+              {["Crianças e adultos", "3 velocidades", "Controle remoto", "Bateria USB-C"].map(
+                (t) => (
+                  <li
+                    key={t}
+                    className="rounded-md border border-[var(--line)] bg-[var(--card-bg)] px-2.5 py-1 text-[9.5px] font-extrabold uppercase tracking-[0.1em] text-[var(--ink)]"
+                  >
+                    {t}
+                  </li>
+                ),
+              )}
             </ul>
 
             <div id="escolha-o-kit" className="mt-7 scroll-mt-32">
@@ -193,13 +230,17 @@ function Page() {
               </div>
             </div>
 
-            <div className="mt-4 overflow-hidden rounded-2xl border border-[var(--lime-deep)]/40 bg-[linear-gradient(135deg,var(--tint-lime),var(--card-bg))] backdrop-blur">
+            <div className="mt-4 overflow-hidden rounded-2xl border-2 border-dashed border-[var(--edge)]/40 bg-white">
               <p className="flex items-center gap-2 px-4 pt-3 text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--ink)]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[var(--lime-deep)]" /> Vem em cada caixa ✦
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--lime-deep)]" /> Vem em cada
+                caixa ✦
               </p>
               <ul className="grid grid-cols-1 gap-x-4 gap-y-2 px-4 pb-4 pt-3 sm:grid-cols-2">
                 {NA_CAIXA.map((i) => (
-                  <li key={i.t} className="flex items-center gap-2.5 text-[12.5px] text-[var(--ink)]">
+                  <li
+                    key={i.t}
+                    className="flex items-center gap-2.5 text-[12.5px] text-[var(--ink)]"
+                  >
                     <span className="w-6 shrink-0 font-display text-[16px] font-extrabold italic text-[var(--blue)]">
                       {i.n}
                     </span>
@@ -210,14 +251,19 @@ function Page() {
             </div>
 
             <div className="mt-5">
-              <button type="button" onClick={buy} className="btn-buy h-[70px] w-full text-[18px] md:text-[19px]">
+              <button
+                type="button"
+                onClick={buy}
+                className="btn-buy h-[70px] w-full text-[18px] md:text-[19px]"
+              >
                 Comprar agora
               </button>
               {(pixPrice > 0 || pay.card) && (
                 <p className="mt-2.5 text-center text-[12px] text-[var(--slate)]">
                   {pixPrice > 0 && (
                     <>
-                      <b className="text-[var(--ink)]">{brl(pixPrice)}</b> no Pix ({Math.round(pay.pixOff * 100)}% OFF)
+                      <b className="text-[var(--ink)]">{brl(pixPrice)}</b> no Pix (
+                      {Math.round(pay.pixOff * 100)}% OFF)
                     </>
                   )}
                   {pixPrice > 0 && pay.card && " ou "}
@@ -255,7 +301,10 @@ function Page() {
         </div>
       </section>
 
-      <Ticker big items={["Caiu? Pegou!", "3 velocidades", "Controle remoto", "Diversão sem tela"]} />
+      <Ticker
+        big
+        items={["Caiu? Pegou!", "3 velocidades", "Controle remoto", "Diversão sem tela"]}
+      />
       <MesmaSala />
       <Modos />
       <Controle />
@@ -263,12 +312,22 @@ function Page() {
       <ComoJogar />
       <NaCaixa />
 
-      <section id="perguntas" className="container-edge grid scroll-mt-28 gap-10 py-16 md:grid-cols-[1fr_1.4fr] md:gap-16 md:py-24">
+      <section
+        id="perguntas"
+        className="container-edge grid scroll-mt-28 gap-10 py-16 md:grid-cols-[1fr_1.4fr] md:gap-16 md:py-24"
+      >
         <div>
           <Eyebrow>Antes do primeiro bastão cair</Eyebrow>
-          <Display top="Suas dúvidas" em="respondidas" className="mt-4 text-[52px] md:text-[72px]" />
+          <Display
+            top="Suas dúvidas"
+            em="respondidas"
+            className="mt-4 text-[38px] md:text-[54px]"
+          />
           <p className="mt-5 text-[13.5px] text-[var(--slate)]">Precisa de outra ajuda?</p>
-          <Link to="/contato" className="mt-1 inline-block border-b border-[var(--blue)] text-[13.5px] font-semibold text-[var(--blue)]">
+          <Link
+            to="/contato"
+            className="mt-1 inline-block border-b border-[var(--blue)] text-[13.5px] font-semibold text-[var(--blue)]"
+          >
             Fale com a gente ↗
           </Link>
         </div>
@@ -282,7 +341,6 @@ function Page() {
         cta="Quero o meu"
         note={`${FREE_SHIPPING_LABEL} · Garantia de ${brand.garantiaDias} dias`}
       />
-
     </SiteLayout>
   );
 }

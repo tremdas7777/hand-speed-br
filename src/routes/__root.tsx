@@ -20,7 +20,7 @@ import { setCatalogData, FREE_SHIPPING_PHRASE } from "@/lib/bundles";
 
 import appCss from "../styles.css?url";
 
-const TITLE = `Jogo de pegar o bastão para crianças e família | ${brand.name}`;
+const TITLE = `Jogo de pegar o bastão para toda a família | ${brand.name}`;
 const DESCRIPTION = `Hand Speed: o desafio de reflexo que viralizou. A barra solta 6 bastões de espuma e você pega antes de cair. 3 velocidades, controle remoto e bateria USB-C, com ${FREE_SHIPPING_PHRASE}.`;
 
 function NotFoundComponent() {
@@ -97,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "keywords",
         content:
-          "jogo do bastão, pegar o bastão, jogo de reflexo, drop stick, catch stick, hand speed, brinquedo para família, presente de natal infantil",
+          "jogo do bastão, pegar o bastão, jogo de reflexo, drop stick, catch stick, hand speed, jogo para família, jogo para adultos, jogo para festa, presente de natal",
       },
       { name: "robots", content: "index,follow" },
       { property: "og:site_name", content: brand.name },
@@ -119,7 +119,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=DM+Sans:opsz,wght@9..40,400..800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=DM+Sans:opsz,wght@9..40,400..800&display=swap",
       },
       { rel: "stylesheet", href: appCss },
       // O Google só mostra no resultado ícone com lado múltiplo de 48 px.

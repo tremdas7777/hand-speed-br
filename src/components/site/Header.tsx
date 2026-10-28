@@ -33,7 +33,7 @@ function Drawer({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-[60] bg-black/60 lg:hidden" onClick={onClose}>
       <aside
-        className="flex h-full w-[86%] max-w-sm flex-col overflow-y-auto border-r border-[var(--line)] bg-[#0a1030] animate-in slide-in-from-left duration-300"
+        className="flex h-full w-[86%] max-w-sm flex-col overflow-y-auto border-r-[2.5px] border-[var(--edge)] bg-[var(--paper)] animate-in slide-in-from-left duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b border-[var(--line)] px-5 py-3">
@@ -103,7 +103,7 @@ export function Header() {
   }, [menu]);
 
   return (
-    <header className="border-b border-[var(--line)] bg-[rgb(var(--fade-rgb)/0.78)] backdrop-blur-md">
+    <header className="border-b-[2.5px] border-[var(--edge)] bg-[#fffdf6]/95 backdrop-blur-md">
       <div className="container-edge flex h-[64px] items-center justify-between gap-6 lg:h-[78px]">
         <div className="flex items-center gap-1">
           <button

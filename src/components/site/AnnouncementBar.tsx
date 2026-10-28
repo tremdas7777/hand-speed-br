@@ -18,7 +18,7 @@ export function AnnouncementBar() {
   );
   return (
     <div
-      className="border-b border-[var(--line)] bg-[rgb(var(--fade-rgb)/0.72)] bg-[linear-gradient(90deg,var(--tint-blue),transparent_55%,var(--tint-lime))] text-[10px] backdrop-blur-md font-bold uppercase tracking-[0.14em] text-[var(--ink)]"
+      className="navy text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--ink)]"
       role="region"
       aria-label="Avisos da loja"
     >

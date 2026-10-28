@@ -25,7 +25,7 @@ export function Gallery({ images, alt, chip }: { images: readonly string[]; alt:
 
   return (
     <div>
-      <div className="relative overflow-hidden rounded-2xl bg-[var(--dark)] shadow-[0_30px_60px_-30px_rgba(16,28,59,0.55)]">
+      <div className="sticker relative overflow-hidden bg-white">
         <div
           ref={ref}
           className="flex snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -43,8 +43,7 @@ export function Gallery({ images, alt, chip }: { images: readonly string[]; alt:
             />
           ))}
         </div>
-        <span className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-white/15 bg-[var(--dark)]/75 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur">
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--lime)]" />
+        <span className="absolute left-3 top-3 flex -rotate-2 items-center gap-2 rounded-full border-2 border-[var(--edge)] bg-[var(--lime)] px-3 py-1.5 text-[9.5px] font-extrabold uppercase tracking-[0.12em] text-[var(--on-lime)] shadow-[2px_2px_0_var(--edge)]">
           {chip}
         </span>
       </div>
@@ -54,7 +53,7 @@ export function Gallery({ images, alt, chip }: { images: readonly string[]; alt:
           type="button"
           aria-label="Foto anterior"
           onClick={() => go(i - 1)}
-          className="grid h-11 w-11 place-items-center rounded-full border border-[var(--line)] bg-[var(--card-bg)] text-[var(--blue)] shadow-sm transition hover:border-[var(--blue)]"
+          className="grid h-11 w-11 place-items-center rounded-full border-2 border-[var(--edge)] bg-white text-[var(--ink)] shadow-[2px_2px_0_var(--edge)] transition hover:bg-[var(--lime)]"
         >
           <ArrowLeft className="h-4 w-4" strokeWidth={2.4} />
         </button>
@@ -66,7 +65,7 @@ export function Gallery({ images, alt, chip }: { images: readonly string[]; alt:
           type="button"
           aria-label="Próxima foto"
           onClick={() => go(i + 1)}
-          className="grid h-11 w-11 place-items-center rounded-full border border-[var(--line)] bg-[var(--card-bg)] text-[var(--blue)] shadow-sm transition hover:border-[var(--blue)]"
+          className="grid h-11 w-11 place-items-center rounded-full border-2 border-[var(--edge)] bg-white text-[var(--ink)] shadow-[2px_2px_0_var(--edge)] transition hover:bg-[var(--lime)]"
         >
           <ArrowRight className="h-4 w-4" strokeWidth={2.4} />
         </button>
