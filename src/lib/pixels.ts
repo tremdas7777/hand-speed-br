@@ -10,6 +10,6 @@
 export const PIXELS = {
   meta: "",
   tiktok: "",
-  utmify: "",
+  utmify: "6ae2f20c05b41a8400af9bdf",
   utmifyTiktok: "",
 } as const;
