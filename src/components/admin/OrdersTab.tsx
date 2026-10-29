@@ -25,6 +25,7 @@ import {
   whatsappUrl,
 } from "@/lib/admin-format";
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet";
+import { ManualApprove } from "./ManualApprove";
 import {
   Avatar,
   EmptyState,
@@ -90,6 +91,8 @@ export function OrdersTab({ password }: OrdersTabProps) {
     try {
       const r = await fetchOrders({ data: { password, days } });
       setOrders(r.orders);
+      // Gaveta aberta acompanha o pedido atualizado (ex.: depois de aprovar).
+      setSelected((s) => (s ? (r.orders.find((x) => x.id === s.id) ?? s) : s));
     } catch (e) {
       setError(e instanceof Error ? e.message : "Erro ao carregar pedidos");
     } finally {
@@ -388,6 +391,8 @@ export function OrdersTab({ password }: OrdersTabProps) {
         orders={orders}
         onSelect={setSelected}
         onClose={() => setSelected(null)}
+        password={password}
+        onChanged={load}
       />
     </div>
   );
@@ -398,11 +403,15 @@ function OrderSheet({
   orders,
   onSelect,
   onClose,
+  password,
+  onChanged,
 }: {
   order: AdminOrder | null;
   orders: AdminOrder[];
   onSelect: (o: AdminOrder) => void;
   onClose: () => void;
+  password: string;
+  onChanged: () => void;
 }) {
   return (
     <Sheet open={!!o} onOpenChange={(open) => !open && onClose()}>
@@ -410,7 +419,15 @@ function OrderSheet({
         side="right"
         className="adm w-full overflow-y-auto border-l border-[#e4e7ec] bg-white p-0 sm:max-w-lg"
       >
-        {o && <OrderDetails o={o} orders={orders} onSelect={onSelect} />}
+        {o && (
+          <OrderDetails
+            o={o}
+            orders={orders}
+            onSelect={onSelect}
+            password={password}
+            onChanged={onChanged}
+          />
+        )}
       </SheetContent>
     </Sheet>
   );
@@ -469,10 +486,14 @@ function OrderDetails({
   o,
   orders,
   onSelect,
+  password,
+  onChanged,
 }: {
   o: AdminOrder;
   orders: AdminOrder[];
   onSelect: (o: AdminOrder) => void;
+  password: string;
+  onChanged: () => void;
 }) {
   const c = o.customer ?? ({} as AdminOrder["customer"]);
   const utmEntries = Object.entries(o.utm ?? {}).filter(([, v]) => v);
@@ -534,6 +555,7 @@ function OrderDetails({
       </div>
 
       <div className="space-y-6 px-6 py-5">
+        <ManualApprove order={o} password={password} onApproved={onChanged} />
         <div>
           <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-[#98a2b3]">
             Itens do pedido
