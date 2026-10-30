@@ -28,6 +28,7 @@ import { Route as ExpressoIdRouteImport } from './routes/expresso.$id'
 import { Route as ObrigadoIdRouteImport } from './routes/obrigado.$id'
 import { Route as PedidoIdRouteImport } from './routes/pedido.$id'
 import { Route as UpsellIdRouteImport } from './routes/upsell.$id'
+import { Route as ApiPublicPixReconcileRouteImport } from './routes/api/public/pix-reconcile'
 import { Route as ApiPublicPixWebhookRouteImport } from './routes/api/public/pix-webhook'
 
 const IndexRoute = IndexRouteImport.update({
@@ -125,6 +126,11 @@ const UpsellIdRoute = UpsellIdRouteImport.update({
   path: '/upsell/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicPixReconcileRoute = ApiPublicPixReconcileRouteImport.update({
+  id: '/api/public/pix-reconcile',
+  path: '/api/public/pix-reconcile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicPixWebhookRoute = ApiPublicPixWebhookRouteImport.update({
   id: '/api/public/pix-webhook',
   path: '/api/public/pix-webhook',
@@ -151,6 +157,7 @@ export interface FileRoutesByFullPath {
   '/obrigado/$id': typeof ObrigadoIdRoute
   '/pedido/$id': typeof PedidoIdRoute
   '/upsell/$id': typeof UpsellIdRoute
+  '/api/public/pix-reconcile': typeof ApiPublicPixReconcileRoute
   '/api/public/pix-webhook': typeof ApiPublicPixWebhookRoute
 }
 export interface FileRoutesByTo {
@@ -173,6 +180,7 @@ export interface FileRoutesByTo {
   '/obrigado/$id': typeof ObrigadoIdRoute
   '/pedido/$id': typeof PedidoIdRoute
   '/upsell/$id': typeof UpsellIdRoute
+  '/api/public/pix-reconcile': typeof ApiPublicPixReconcileRoute
   '/api/public/pix-webhook': typeof ApiPublicPixWebhookRoute
 }
 export interface FileRoutesById {
@@ -196,6 +204,7 @@ export interface FileRoutesById {
   '/obrigado/$id': typeof ObrigadoIdRoute
   '/pedido/$id': typeof PedidoIdRoute
   '/upsell/$id': typeof UpsellIdRoute
+  '/api/public/pix-reconcile': typeof ApiPublicPixReconcileRoute
   '/api/public/pix-webhook': typeof ApiPublicPixWebhookRoute
 }
 export interface FileRouteTypes {
@@ -220,6 +229,7 @@ export interface FileRouteTypes {
     | '/obrigado/$id'
     | '/pedido/$id'
     | '/upsell/$id'
+    | '/api/public/pix-reconcile'
     | '/api/public/pix-webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -242,6 +252,7 @@ export interface FileRouteTypes {
     | '/obrigado/$id'
     | '/pedido/$id'
     | '/upsell/$id'
+    | '/api/public/pix-reconcile'
     | '/api/public/pix-webhook'
   id:
     | '__root__'
@@ -264,6 +275,7 @@ export interface FileRouteTypes {
     | '/obrigado/$id'
     | '/pedido/$id'
     | '/upsell/$id'
+    | '/api/public/pix-reconcile'
     | '/api/public/pix-webhook'
   fileRoutesById: FileRoutesById
 }
@@ -287,6 +299,7 @@ export interface RootRouteChildren {
   ObrigadoIdRoute: typeof ObrigadoIdRoute
   PedidoIdRoute: typeof PedidoIdRoute
   UpsellIdRoute: typeof UpsellIdRoute
+  ApiPublicPixReconcileRoute: typeof ApiPublicPixReconcileRoute
   ApiPublicPixWebhookRoute: typeof ApiPublicPixWebhookRoute
 }
 
@@ -425,6 +438,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UpsellIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/pix-reconcile': {
+      id: '/api/public/pix-reconcile'
+      path: '/api/public/pix-reconcile'
+      fullPath: '/api/public/pix-reconcile'
+      preLoaderRoute: typeof ApiPublicPixReconcileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/pix-webhook': {
       id: '/api/public/pix-webhook'
       path: '/api/public/pix-webhook'
@@ -455,6 +475,7 @@ const rootRouteChildren: RootRouteChildren = {
   ObrigadoIdRoute: ObrigadoIdRoute,
   PedidoIdRoute: PedidoIdRoute,
   UpsellIdRoute: UpsellIdRoute,
+  ApiPublicPixReconcileRoute: ApiPublicPixReconcileRoute,
   ApiPublicPixWebhookRoute: ApiPublicPixWebhookRoute,
 }
 export const routeTree = rootRouteImport
