@@ -258,22 +258,24 @@ function Page() {
               >
                 Comprar agora
               </button>
-              {(pixPrice > 0 || pay.card) && (
-                <p className="mt-2.5 text-center text-[12px] text-[var(--slate)]">
-                  {pixPrice > 0 && (
-                    <>
-                      <b className="text-[var(--ink)]">{brl(pixPrice)}</b> no Pix (
-                      {Math.round(pay.pixOff * 100)}% OFF)
-                    </>
-                  )}
-                  {pixPrice > 0 && pay.card && " ou "}
-                  {pay.card && (
-                    <>
-                      {pay.installments}x de {installment(priced.price, pay.installments)} no cartão
-                    </>
-                  )}
-                </p>
-              )}
+              <p className="mt-2.5 text-center text-[12px] text-[var(--slate)]">
+                {pixPrice > 0 ? (
+                  <>
+                    <b className="text-[var(--ink)]">{brl(pixPrice)}</b> no Pix (
+                    {Math.round(pay.pixOff * 100)}% de desconto)
+                  </>
+                ) : (
+                  <>
+                    <b className="text-[var(--ink)]">{brl(priced.price)}</b> no Pix
+                  </>
+                )}
+                {pay.card && (
+                  <>
+                    {" ou "}
+                    <b className="text-[var(--ink)]">{brl(priced.price)}</b> no cartão
+                  </>
+                )}
+              </p>
               <p className="mt-2.5 flex items-center justify-center gap-1.5 text-[12px] text-[var(--ink)]">
                 <Check className="h-3.5 w-3.5 text-[var(--lime)]" strokeWidth={3} />
                 {bundleShippingLabel(priced)}
