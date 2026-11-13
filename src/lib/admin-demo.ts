@@ -320,6 +320,7 @@ function responder(nome: string, dados: Record<string, unknown>): unknown {
           payshark: true,
           koku: true,
           pixblack: true,
+          legacy: false,
         },
         keys: {
           pixgate: chave("pg_demo_1234abcd"),
@@ -328,6 +329,7 @@ function responder(nome: string, dados: Record<string, unknown>): unknown {
           payshark: chave("ps_demo_9012ijkl"),
           koku: chave("koku_live_demo_3456mnop"),
           pixblack: chave("pxb_live_demo_7890qrst"),
+          legacy: { key: null, source: null },
         },
         lastFallback: {
           from: "umbrella",
@@ -373,6 +375,7 @@ function responder(nome: string, dados: Record<string, unknown>): unknown {
     case "testPaySharkFn":
     case "testKokuFn":
     case "testPixBlackFn":
+    case "testLegacyFn":
     case "testSagacePayFn":
     case "testHypercashFn":
     case "testRotasyncKeyFn":
